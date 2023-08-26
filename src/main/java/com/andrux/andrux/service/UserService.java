@@ -11,9 +11,5 @@ public interface UserService {
 
     User findByUsername(String username);
 
-//    void checkUniqueDuty(User user, String duty);
-
-//    void updateDuty(User currentUser,String duty, boolean status);
-
     void checkSecurity(String currentUser, String username);
 }

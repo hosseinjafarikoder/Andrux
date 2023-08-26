@@ -40,32 +40,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
-//    @Override
-//    public void checkUniqueDuty(User user, String duty) {
-//        if (Objects.equals(duty, "customer") && user.getCustomer()!=null){
-//            throw new NotUniqueDutyException("شما دوبار به عنوان مشتری نمی توانید ثبت نام کنید");
-//        }else if (Objects.equals(duty, "businessOwner") && user.getBusinessOwner()!=null){
-//            throw new NotUniqueDutyException("شما دوبار به عنوان صاحب کسب و کار نمی توانید ثبت نام کنید");
-//        }else if (Objects.equals(duty, "manager") && user.getManager()!=null){
-//            throw new NotUniqueDutyException("شما دوبار به عنوان  کارمند نمی توانید ثبت نام کنید");
-//        }
-//    }
-
-//    @Override
-//    public void updateDuty(User currentUser,String duty, boolean status) {
-//        if (Objects.equals(duty, "customer")){
-//            currentUser.setCheckIsCustomer(status);
-//        }else if (Objects.equals(duty, "businessOwner")){
-//            currentUser.setCheckIsBusinessOwner(status);
-//        }else if (Objects.equals(duty, "manager")){
-//            currentUser.setCheckIsManager(status);
-//        }else {
-//            throw new RuntimeException("unknown keyword for duty");
-//        }
-//        userRepository.save(currentUser);
-//    }
-
-    //todo i must check it later
     @Override
     public void checkSecurity(String currentUser, String username) {
         if (!Objects.equals(currentUser, username)){

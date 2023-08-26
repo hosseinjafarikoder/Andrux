@@ -20,25 +20,13 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private SecurityService securityService;
-
-    @Autowired
     private UserValidator userValidator;
 
 
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String registration(Model model) {
 
-        //TODO you must fix it abstract user
         model.addAttribute("userForm", new User());
-//        BusinessOwner b = new BusinessOwner();
-//        b.setUsername();
-
-//        BusinessOwner businessUser = new BusinessOwner();
-
-//        model.addAttribute("userForm", businessUser);
-
-//        return "security/registration";
         return "security/register";
     }
 
@@ -48,14 +36,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "security/register";
         }
-//        userForm.setCheckIsCustomer(true);
         userService.save(userForm);
-//        Customer customer = new Customer();
-//        customer.setCustomerUser(userForm);
-//        customerService.saveOrUpdate(customer);
-
-        //TODO this is the cause of error when i create a user
-//        securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
 
         return "redirect:/";
     }
@@ -68,11 +49,9 @@ public class UserController {
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
-//        return "security/login";
         return "security/login";
     }
 
-//    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     @RequestMapping(value = {"/welcome"}, method = RequestMethod.GET)
     public String welcome(Principal principal, Model model) {
         User currentUser = userService.findByUsername(principal.getName());
@@ -80,8 +59,4 @@ public class UserController {
         return "welcome";
     }
 
-//    @RequestMapping(value = {"/testSecurity"}, method = RequestMethod.GET)
-//    public String testSecurity() {
-//        return "security/testSecurity";
-//    }
 }
