@@ -28,6 +28,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/resources/**", "/registration").permitAll()
                     .antMatchers("/index/**").permitAll()
+                    .antMatchers("/launcher/**").permitAll()
+                    .antMatchers("/oction/**").permitAll()
+                    .antMatchers("/welcome/**").permitAll()
+                    .antMatchers("/index/**").authenticated()
                     .antMatchers("/static/**").permitAll()
                     .antMatchers("/api/test/**").authenticated()
                 .anyRequest().authenticated()
@@ -39,5 +43,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout()
                     .permitAll();
     }
-
 }
