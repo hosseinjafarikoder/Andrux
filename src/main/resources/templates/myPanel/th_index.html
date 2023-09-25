@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>Home page</title>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            var dps = [{x: 1, y: 10}, {x: 2, y: 13}, {x: 3, y: 18}, {x: 4, y: 20}, {x: 5, y: 17},{x: 6, y: 10}, {x: 7, y: 13}, {x: 8, y: 18}, {x: 9, y: 20}, {x: 10, y: 17}];   //dataPoints.
+
+            var chart = new CanvasJS.Chart("chartContainer",{
+                title :{
+                    text: "Live Data"
+                },
+                axisX: {
+                    title: "Axis X Title"
+                },
+                axisY: {
+                    title: "Units"
+                },
+                data: [{
+                    type: "line",
+                    dataPoints : dps
+                }]
+            });
+
+            chart.render();
+            var xVal = dps.length + 1;
+            var yVal = 15;
+            var updateInterval = 3000;
+
+            var updateChart = function () {
+
+
+                yVal = yVal +  Math.round(5 + Math.random() *(-5-5));
+                dps.push({x: xVal,y: yVal});
+
+                xVal++;
+                if (dps.length >  10 )
+                {
+                    dps.shift();
+                }
+
+                chart.render();
+
+                // update chart after specified time.
+
+            };
+
+            setInterval(function(){updateChart()}, updateInterval);
+        }
+    </script>
+    <script type="text/javascript" src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="ui message">
+        <i class="teal icon"></i>
+        <div class="content">
+            <div class="header">hardware config</div>
+            <hr>
+            <!--            <img th:src="@{https://www.google.com/imgres?imgurl=https%3A%2F%2Fi.pinimg.com%2F564x%2F70%2Fbc%2Fcf%2F70bccff1e900bd2e51aa4897d3036d27.jpg&tbnid=bl7WzUVSXs-iDM&vet=12ahUKEwins9LF67uBAxU8picCHfmACPYQMygLegUIARCCAQ..i&imgrefurl=https%3A%2F%2Fin.pinterest.com%2Fpin%2F713609503445425488%2F&docid=yFi2rplzOuTcYM&w=512&h=512&q=Pc%20Icon%20png&ved=2ahUKEwins9LF67uBAxU8picCHfmACPYQMygLegUIARCCAQ}">-->
+            <!--            <img src="../../templates/myPanel/pc.png" th:src="@{myPanel/pc.png}">-->
+            <img th:src="@{pictures/pc.png}" width="200" height="200">
+        </div>
+    </div>
+
+    <div class="ui message">
+        <i class="teal icon"></i>
+        <div class="content">
+            <div class="header">software config</div>
+            <hr>
+            <img th:src="@{pictures/windows11.jpeg}" width="200" height="135">
+        </div>
+    </div>
+
+    <div class="ui message">
+        <i class="teal icon"></i>
+        <div class="content">
+            <div class="header">charts</div>
+            <hr>
+            <div id="chartContainer" style="height: 300px; width: 100%;">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ui icon message">
+        <i class="teal smile icon"></i>
+        <div class="content">
+            <div class="header">
+                Welcome
+            </div>
+            <p>my panel </p>
+            <p> edit info </p>
+            <p> see my pc config </p>
+            <p> terminal </p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
