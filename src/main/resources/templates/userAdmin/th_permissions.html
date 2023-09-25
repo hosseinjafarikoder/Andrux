@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>adminPanel-permissions</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Permissions</h1>
+    <table class="ui table" th:if="${permissions}">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="permission : ${permissions}" th:object="${permission}">
+            <td th:text="*{permissionId}"></td>
+            <td th:text="*{name}"></td>
+            <td>
+                <a class="addButton" th:href="@{/admin/permissions/update/{permissionId}(permissionId = *{permissionId})}">update</a>
+            </td>
+            <td>
+<!--                <a class="addButton" th:href="@{/admin/permissions/delete(permissionId=*{permissionId})}">delete</a>-->
+<!--                <a class="addButton" th:href="@{/admin/permissions/delete}">delete</a>-->
+
+<!--                <a class="addButton" th:href="@{/admin/permissions/delete(permissionId=*{permissionId})}"-->
+<!--                   sec:authorize="isAuthenticated() and hasAuthority('manageUser')">-->
+<!--                    delete-->
+<!--                </a>-->
+                <a class="addButton" th:href="@{/admin/permissions/delete/{permissionId}(permissionId = *{permissionId})}">delete
+<!--                    <span th:text="${item.name}"></span>-->
+                </a>
+<!--                <form class="ui large form" method="post" th:action="@{/admin/permissions/delete}">-->
+<!--                    <button type="submit" class="addButton">delete</button>-->
+<!--                    <input type="text" th:name="*{permissionId}">-->
+<!--                </form>-->
+            </td>
+        </tr>
+        </tbody>
+        <form class="ui large form" method="post" th:action="@{/admin/permissions/add}">
+            <button type="submit" class="addButton">add</button>
+            <input type="text" name="name" placeholder="name">
+        </form>
+    </table>
+<!--    <div class="ui message" th:unless="${permissions}">-->
+<!--        <div class="content">-->
+<!--            <div class="header">-->
+<!--                No permissions-->
+<!--            </div>-->
+<!--            <p>It's unexpected.</p>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+</body>
+</html>

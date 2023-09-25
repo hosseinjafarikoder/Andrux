@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>adminPanel-users</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Users</h1>
+    <form class="ui large form" method="post" th:action="@{/admin/users/add}">
+        <button type="submit" class="addButton">add</button>
+        <input type="text" name="account" placeholder="account">
+        <input type="text" name="lastName" placeholder="lastName">
+        <input type="text" name="firstName" placeholder="firstName">
+        <input type="password" name="password" placeholder="password">
+        <div th:class="collapsed">
+            <input type="hidden" name="role" value="">
+            <ul th:each="role: ${roles}">
+                <li>
+                    <input type="checkbox" name="roles" th:value="${role.roleId}" th:text="${role.name}">
+                </li>
+            </ul>
+        </div>
+    </form>
+    <table class="ui table" th:if="${users}">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Account</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}" th:object="${user}">
+            <td th:text="*{userId}"></td>
+            <td th:text="*{account}"></td>
+            <td th:text="*{firstName + ' ' + lastName}"></td>
+            <td th:text="*{roles}"></td>
+            <td>
+                <a class="addButton" th:href="@{/admin/users/update/{userId}(userId = *{userId})}">update</a>
+            </td>
+            <td>
+                <a class="addButton" th:href="@{/admin/users/delete/{userId}(userId = *{userId})}">delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="ui message" th:unless="${users}">
+        <div class="content">
+            <div class="header">
+                No users
+            </div>
+            <p>It's unexpected.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

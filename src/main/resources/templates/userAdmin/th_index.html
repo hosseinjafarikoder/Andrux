@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>adminPanel</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <style>
+        body {
+            background-color: #DADADA;
+        }
+        .container > .grid {
+            height: 100%;
+        }
+        .column {
+            max-width: 450px;
+        }
+    </style>
+    <h2 style="color: red">this is admin panel</h2>
+    <a th:href="@{/admin/users/}" href="../userAdmin/th_users.html" class="item"
+       sec:authorize="isAuthenticated() and hasAuthority('manageUser')">
+        Users
+    </a><br>
+    <a th:href="@{/admin/roles/}" href="../userAdmin/th_roles.html" class="item"
+       sec:authorize="isAuthenticated() and hasAuthority('manageUser')">
+        roles
+    </a><br>
+    <a th:href="@{/admin/permissions/}" href="../userAdmin/th_permissions.html" class="item"
+       sec:authorize="isAuthenticated() and hasAuthority('manageUser')">
+        Permissions
+    </a>
+</div>
+</body>
+</html>

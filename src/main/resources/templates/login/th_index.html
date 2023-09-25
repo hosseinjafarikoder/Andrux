@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>Login</title>
+<!--    <style >-->
+<!--        .body {-->
+<!--            background-image: url(/static/background.jpeg);-->
+<!--        }-->
+<!--    </style>-->
+</head>
+<!--<body style="background-image: url('static/css/background.jpeg');">-->
+<body >
+
+<div layout:fragment="content">
+    <style>
+        body {
+            /*background-color: #DADADA;*/
+            background-image: url('https://www.bleepstatic.com/content/hl-images/2021/06/15/Windows--11.jpg') !important;
+            /*background-image: url('/static/background.jpeg') !important;*/
+
+            /*background-image: url(/static/background.jpeg);*/
+        }
+        /*.h{*/
+        /*    background-image: url(/static/background.jpeg);*/
+        /*}*/
+        .container > .grid {
+            height: 100%;
+        }
+        .column {
+            max-width: 450px;
+        }
+    </style>
+    <div class="h">
+        dd
+    </div>
+    <div class="ui middle aligned center aligned grid">
+        <div class="column">
+            <h2 class="ui teal header">
+                <div class="content">
+<!--                    Log-in to your account my test  = <p th:text="${test}"></p>-->
+
+<!--                    <div class="ui left icon input">-->
+<!--                        <i class=""></i>-->
+<!--                        <select th:name="role">-->
+<!--                            <option th:each="elm : ${list}" th:value="${elm}">-->
+<!--                                <span th:text="${elm}"></span>-->
+<!--                            </option>-->
+<!--&lt;!&ndash;                            <option value="developer">Developer</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <option value="guest" selected>Guest</option>&ndash;&gt;-->
+<!--                        </select>-->
+<!--                    </div>-->
+
+                </div>
+            </h2>
+            <form class="ui large form" method="post" th:action="@{/login}">
+                <div class="ui stacked segment">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="account" placeholder="Account">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <button type="submit" class="ui fluid large teal submit button">Login</button>
+                </div>
+
+                <div class="ui error message"></div>
+
+            </form>
+            <div class="ui message">
+                New to us? <a th:href="@{/signup}">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

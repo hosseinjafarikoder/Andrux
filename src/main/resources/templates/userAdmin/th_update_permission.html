@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>update permission</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h3>update page</h3>
+<!--    <form class="ui large form" method="post" th:object="${permission}" th:action="@{/admin/permissions/saveUpdate}">-->
+<!--    or you can use this way :-->
+    <form class="ui large form" method="post" th:action="@{/admin/permissions/saveUpdate}">
+        <input type="hidden" name="permissionId" th:value="${permission.permissionId}">
+        <input type="text" name="name" placeholder="name">
+        <button type="submit" class="addButton">saveUpdate</button>
+    </form>
+</div>
+</body>
+</html>

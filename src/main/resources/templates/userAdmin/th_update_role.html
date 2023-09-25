@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <title>update role</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h3>update page</h3>
+<!--    <form class="ui large form" method="post" th:object="${permission}" th:action="@{/admin/permissions/saveUpdate}">-->
+<!--    or you can use this way :-->
+    <form class="ui large form" method="post" th:action="@{/admin/roles/saveUpdate}">
+        <input type="hidden" name="roleId" th:value="${role.roleId}">
+        <input type="text" name="name" placeholder="name">
+        <div th:class="collapsed">
+            <input type="hidden" name="permission" value="">
+            <ul th:each="permission: ${permissions}">
+                <li>
+                    <input type="checkbox" name="permissions" th:value="${permission.permissionId}" th:text="${permission.name}">
+                </li>
+            </ul>
+        </div>
+        <button type="submit" class="addButton">saveUpdate</button>
+    </form>
+</div>
+</body>
+</html>

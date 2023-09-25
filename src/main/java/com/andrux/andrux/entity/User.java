@@ -1,42 +1,40 @@
 package com.andrux.andrux.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
+
 @Entity
-@Table(name = "user")
+@Table(name = "USERS")
 @Data
-public class User implements Serializable {
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private int version;
-    private long uniqueId;
-    private String username;
-    private String password;
-    private String passwordConfirm;
-    private Boolean ban;
-    private boolean checkIsCustomer;
-    private boolean checkIsBusinessOwner;
-    private boolean checkIsManager;
+    @GeneratedValue
+    private Long userId;
 
-    //metadata fields :
-    private String firstName;
+    @NonNull
+    private String account;
+
+    @NonNull
     private String lastName;
-    private String email;
-    private String phoneNumber;
-    private String address;
-    private long lat;
-    private long len;
 
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles = new HashSet<>();
+    @NonNull
+    private String firstName;
 
+    @NonNull
+    private String password; // added for Spring Security
 
-
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "USER_ROLE",
+            joinColumns = {@JoinColumn(name = "USER_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "ROLE_ID")}
+    )
+    private Set<Role> roles;
 }

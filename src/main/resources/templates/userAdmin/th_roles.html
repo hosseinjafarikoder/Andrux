@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+
+<head>
+    <title>adminPanel-roles</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <h1>Roles</h1>
+    <form class="ui large form" method="post" th:action="@{/admin/roles/add}">
+        <button type="submit" class="addButton">add</button>
+        <input type="text" name="name" placeholder="name">
+        <div th:class="collapsed">
+            <input type="hidden" name="permission" value="">
+            <ul th:each="permission: ${permissions}">
+                <li>
+                    <input type="checkbox" name="permissions" th:value="${permission.permissionId}" th:text="${permission.name}">
+                </li>
+            </ul>
+        </div>
+    </form>
+    <table class="ui table" th:if="${roles}">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Permissions</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="role : ${roles}" th:object="${role}">
+            <td th:text="*{roleId}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{permissions}"></td>
+            <td>
+                <a class="addButton" th:href="@{/admin/roles/update/{roleId}(roleId = *{roleId})}">update</a>
+            </td>
+            <td>
+                <a class="addButton" th:href="@{/admin/roles/delete/{roleId}(roleId = *{roleId})}">delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="ui message" th:unless="${roles}">
+        <div class="content">
+            <div class="header">
+                No Roles
+            </div>
+            <p>It's unexpected.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <link th:href="@{/webjars/semantic-ui/2.1.6/dist/semantic.min.css}" href="https://cdn.jsdelivr.net/semantic-ui/2.1.6/semantic.min.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/example.css}" href="../../static/css/example.css" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/js/script.js}"></script>
+    <!--    <link th:href="@{/css/example.css}" href="/static/css/example.css" rel="stylesheet" type="text/css"/>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+
+    <meta charset="utf-8">
+</head>
+<body>
+<div class="ui fixed inverted menu">
+    <div class="ui container">
+        <a href="#" class="header item">
+            RBAC Example
+        </a>
+        <a th:href="@{/}" href="../th_index.html" class="item"
+           sec:authorize="isAuthenticated()">
+            Home
+        </a>
+        <a th:href="@{/issues/}" href="../issue/th_list.html" class="item"
+           sec:authorize="isAuthenticated() and hasAuthority('readIssue')">
+            Issue
+        </a>
+        <a th:href="@{/users/}" href="../userAdmin/th_list.html" class="item"
+           sec:authorize="isAuthenticated() and hasAuthority('manageUser')">
+            Users
+        </a>
+
+        <div class="right item">
+            <form method="post" th:action="@{/logout}" action="../login/th_index.html">
+                <button class="ui button" type="submit">
+                    <i class="ui sign out icon"></i>Logout
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="ui main container" layout:fragment="content">
+    <!-- Fragment will be inserted here -->
+</div>
+</body>
+</html>
