@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>courseCategory form</title>
+</head>
+<body>
+<div layout:fragment="content"><br><br><br>
+    <form class="ui large form" method="post" th:action="@{/new/courseCategory/saveCourseCategory}">
+        <div class="ui stacked segment">
+
+            <input type="hidden" name="courseCategoryId" th:value="${courseCategory.courseCategoryId}">
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="courseCategoryName" placeholder="courseCategory Name">
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui left input">
+                        <input type="text" name="status" placeholder="status">
+                    </div>
+                </div>
+<!--                <div class="field">-->
+<!--                    <div class="ui left input">-->
+<!--                        <input type="text" name="parentCategory" placeholder="parentCategory">-->
+<!--                    </div>-->
+<!--                </div>-->
+                <select name="parentCategory" multiple>
+                    <option th:each="parentCategory :${courseCategoryList}" th:value="${parentCategory.getCourseCategoryId()}" th:text="${parentCategory.getCourseCategoryName()}"></option>
+                </select>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="course" placeholder="course">
+                </div>
+            </div>
+
+            <button type="submit" class="ui fluid large teal submit button">submit</button>
+        </div>
+
+        <div class="ui error message"></div>
+
+    </form>
+</div>
+</body>
+</html>

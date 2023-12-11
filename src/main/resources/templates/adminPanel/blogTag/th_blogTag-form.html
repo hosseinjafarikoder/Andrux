@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>blogTag form</title>
+
+</head>
+<body>
+<div layout:fragment="content"><br><br><br>
+    <form class="ui large form" method="post" th:action="@{/blogTag/blogTag/saveBlogTag}" enctype="multipart/form-data">
+        <div class="ui stacked segment">
+
+            <input type="hidden" name="blogTagId" th:value="${blogTag.blogTagId}">
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="blogTagName" th:value="${blogTag.blogTagName}" placeholder="blogTag Name">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="status" th:value="${blogTag.status}" placeholder="status">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="parentTag" th:value="${blogTag.parentTag}" placeholder="parentTag">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="blogList" placeholder="blogList">
+                </div>
+            </div>
+
+            <button type="submit" class="ui fluid large teal submit button">submit</button>
+        </div>
+
+        <div class="ui error message"></div>
+
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>ProductCategory List</title>
+</head>
+<body>
+<div layout:fragment="content"><br><br><br>
+    <a th:href="@{/new/courseCategory/showForm/}">add </a>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>courseCategoryId</th>
+            <th>courseCategoryName</th>
+            <th>status</th>
+            <th>parentCategory</th>
+            <th>courseList</th>
+            <th>update</th>
+            <th>delete</th>
+        </tr>
+
+        <tr th:each="courseCategory : ${courseCategories}" th:object="${courseCategory}">
+            <td th:text="*{courseCategoryId}"></td>
+            <td th:text="*{courseCategoryName}"></td>
+            <td th:text="*{status}"></td>
+            <td th:text="*{parentCategory}"></td>
+            <td th:text="*{courseList}"></td>
+            <td>
+                <form th:action="@{/new/courseCategory/updateForm/}">
+                    <input type="hidden" th:name="courseCategoryId" th:value="*{courseCategoryId}"/>
+                    <input type="submit"/>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/new/courseCategory/delete/}">
+                    <input type="hidden" th:name="courseCategoryId" th:value="*{courseCategoryId}"/>
+                    <input type="submit"/>
+                </form>
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+</body>
+</html>

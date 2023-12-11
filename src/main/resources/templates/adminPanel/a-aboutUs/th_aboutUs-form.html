@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>a-aboutUs form</title>
+
+</head>
+<body>
+<div layout:fragment="content"><br><br><br>
+    <form class="ui large form" method="post" th:action="@{/a-aboutUs/saveAboutUs}">
+        <div class="ui stacked segment">
+
+            <input type="hidden" name="id" th:value="${aboutUs.id}">
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="siteName" placeholder="site Name">
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui left input">
+                        <input type="text" name="sitePhoneNumber" placeholder="sitePhoneNumber">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left input">
+                        <input type="text" name="siteEmail" placeholder="siteEmail">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="siteImage" placeholder="siteImage">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="siteLogo" placeholder="siteLogo">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="aboutUsTitle" placeholder="aboutUsTitle">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="siteDescription" placeholder="siteDescription">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="siteRules" placeholder="siteRules">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="siteAddress" placeholder="siteAddress">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="ownerName" placeholder="ownerName">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="ownerPhoneNumber" placeholder="ownerPhoneNumber">
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="ownerEmail" placeholder="ownerEmail">
+                </div>
+            </div>
+
+
+            <button type="submit" class="ui fluid large teal submit button">submit</button>
+        </div>
+
+        <div class="ui error message"></div>
+
+    </form>
+</div>
+</body>
+</html>

@@ -45,6 +45,10 @@ public class WebSecurityConfig {
                 .antMatchers("/static/**").permitAll()
                 .antMatchers("/terminal/**").permitAll()
                 .antMatchers("/welcome2/**").permitAll()
+                .antMatchers("/image/**").permitAll()
+                .antMatchers("/error/**").permitAll()
+                .antMatchers("/new/**").permitAll()
+
                 .anyRequest().authenticated()
         );
         return http.build();

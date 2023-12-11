@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>blog form</title>
+
+</head>
+<body>
+<div layout:fragment="content"><br><br><br>
+    <form class="ui large form" method="post" th:action="@{/blog/blog/saveBlog}" enctype="multipart/form-data">
+        <div class="ui stacked segment">
+
+            <input type="hidden" name="blogId" th:value="${blog.blogId}">
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="author" th:value="${blog.author}" placeholder="author Name">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="blogTitle" th:value="${blog.blogTitle}" placeholder="blogTitle">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="description" th:value="${blog.description}" placeholder="description">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="status" th:value="${blog.status}" placeholder="status">
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui left input">
+                        <input type="text" name="blogImage" th:value="${blog.blogImage}" placeholder="blogImage">
+                    </div>
+                </div>
+<!--                todo for time field-->
+<!--                <div class="field">-->
+<!--                    <div class="ui left input">-->
+<!--                        <input type="datetime-local" name="creationDate" th:value="${blog.creationDate}" placeholder="creationDate">-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+<!--            todo for time field-->
+<!--            <div class="field">-->
+<!--                <div class="ui left icon input">-->
+<!--                    <i class="user icon"></i>-->
+<!--                    <input type="datetime-local" name="lastModified" th:value="${blog.lastModified}" placeholder="lastModified">-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="url" th:value="${blog.url}" placeholder="url">
+                </div>
+            </div>
+
+            <select name="blogTag" multiple>
+                <option th:each="blogTag :${blogTagList}" th:value="${blogTag.getBlogTagId()}" th:text="${blogTag.getBlogTagName()}"></option>
+            </select>
+
+            <a href="#" >addNewCategory</a>
+
+            <select name="productCategory" multiple>
+                <option th:each="blogCategory :${blogCategoryLis}" th:value="${blogCategory.getBlogCategoryId()}" th:text="${blogCategory.getBlogCategoryName()}"></option>
+            </select>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="view" th:value="${blog.view}" placeholder="view">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="like" th:value="${blog.like}" placeholder="like">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="reference" th:value="${blog.reference}" placeholder="reference">
+                </div>
+            </div>
+
+<!--            todo the image input-->
+            <input id="input-file" type="file" name="file" accept="image/png, image/jpeg"/>
+
+
+            <button type="submit" class="ui fluid large teal submit button">submit</button>
+        </div>
+
+        <div class="ui error message"></div>
+
+    </form>
+</div>
+</body>
+</html>

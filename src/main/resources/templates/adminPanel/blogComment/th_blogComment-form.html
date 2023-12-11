@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>banner form</title>
+
+</head>
+<body>
+<div layout:fragment="content"><br><br><br>
+    <form class="ui large form" method="post" th:action="@{/blogComment/blogComment/saveBlogComment}" enctype="multipart/form-data">
+        <div class="ui stacked segment">
+
+            <input type="hidden" name="blogCommentId" th:value="${blogComment.blogCommentId}">
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="user" th:value="${blogComment.user}" placeholder="user">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="content" th:value="${blogComment.content}" placeholder="content">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="replyOn" th:value="${blogComment.replyOn}" placeholder="replyOn">
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui left input">
+                        <input type="text" name="like" th:value="${blogComment.like}" placeholder="like">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left input">
+                        <input type="text" name="disLike" th:value="${blogComment.disLike}" placeholder="disLike">
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="status" th:value="${blogComment.status}" placeholder="status">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="blog" th:value="${blogComment.blog}" placeholder="blog">
+                </div>
+            </div>
+
+
+            <button type="submit" class="ui fluid large teal submit button">submit</button>
+        </div>
+
+        <div class="ui error message"></div>
+
+    </form>
+</div>
+</body>
+</html>

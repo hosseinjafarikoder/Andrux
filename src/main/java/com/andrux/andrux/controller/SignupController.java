@@ -17,7 +17,8 @@ public class SignupController {
 
     @GetMapping("/signup")
     public String index() {
-        return "signup/th_index";
+//        return "signup/th_index";
+        return "signup/th_login-register";
     }
 
     @PostMapping("/signup")

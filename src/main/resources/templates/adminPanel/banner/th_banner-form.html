@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>banner form</title>
+
+</head>
+<body>
+<div layout:fragment="content"><br><br><br>
+    <form class="ui large form" method="post" th:action="@{/banner/banner/saveBanner}" enctype="multipart/form-data">
+        <div class="ui stacked segment">
+
+            <input type="hidden" name="bannerId" th:value="${banner.bannerId}">
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="bannerName" th:value="${banner.bannerName}" placeholder="banner Name">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="firstText" th:value="${banner.firstText}" placeholder="firstText">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="secondText" th:value="${banner.secondText}" placeholder="secondText">
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <div class="ui left input">
+                        <input type="text" name="description" th:value="${banner.description}" placeholder="description">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui left input">
+                        <input type="text" name="status" th:value="${banner.status}" placeholder="status">
+                    </div>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="previewImagePath" th:value="${banner.previewImagePath}" placeholder="previewImagePath">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="text" name="url" th:value="${banner.url}" placeholder="url">
+                </div>
+            </div>
+<!--            <div class="field">-->
+<!--                <div class="ui left icon input">-->
+<!--                    <i class="user icon"></i>-->
+<!--                    <input type="text" name="relatedProductId" th:value="${banner.relatedProductId}" placeholder="relatedProductId">-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            todo the image input-->
+            <input id="input-file" type="file" name="file" accept="image/png, image/jpeg"/>
+
+
+            <button type="submit" class="ui fluid large teal submit button">submit</button>
+        </div>
+
+        <div class="ui error message"></div>
+
+    </form>
+</div>
+</body>
+</html>

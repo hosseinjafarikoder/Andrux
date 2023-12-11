@@ -15,7 +15,8 @@ public class LoginController {
 
 //        List<String> myList = Arrays.asList("one","two","three");
 //        model.addAttribute("list",myList);
-        return "login/th_index";
+//        return "login/th_index";
+        return "signup/th_login-register";
     }
 
 }
